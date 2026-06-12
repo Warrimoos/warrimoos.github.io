@@ -55,8 +55,8 @@
   </g>
 
   <!-- distant headland -->
-  <path d="M0 540 L0 452 Q120 408 250 442 Q360 470 470 540 Z" fill="#2E7E8C" opacity="0.9"/>
-  <path d="M0 540 L0 492 Q90 462 200 488 Q300 510 380 540 Z" fill="#246C7A" opacity="0.9"/>
+  <path d="M0 540 L0 452 Q120 408 250 442 Q360 470 470 540 Z" fill="#57A06A" opacity="0.9"/>
+  <path d="M0 540 L0 492 Q90 462 200 488 Q300 510 380 540 Z" fill="#3F8554" opacity="0.9"/>
 
   <!-- ocean -->
   <rect x="0" y="520" width="1600" height="230" fill="url(#sea)"/>
@@ -64,12 +64,6 @@
   <path d="M0 600 Q100 586 200 600 T400 600 T600 600 T800 600 T1000 600 T1200 600 T1400 600 T1600 600 V650 Q1500 664 1400 650 T1200 650 T1000 650 T800 650 T600 650 T400 650 T200 650 Q100 638 0 652 Z" fill="#7FD4DE" opacity="0.85"/>
   <!-- foam edge -->
   <path d="M0 690 Q80 676 160 690 T320 690 T480 690 T640 690 T800 690 T960 690 T1120 690 T1280 690 T1440 690 T1600 690 V760 H0 Z" fill="#EAF9F7"/>
-  <g fill="#FFFFFF" opacity="0.9">
-    <circle cx="150" cy="688" r="7"/><circle cx="178" cy="694" r="5"/>
-    <circle cx="520" cy="686" r="6"/><circle cx="548" cy="692" r="4"/>
-    <circle cx="905" cy="688" r="7"/><circle cx="930" cy="694" r="4"/>
-    <circle cx="1295" cy="686" r="6"/><circle cx="1320" cy="692" r="4"/>
-  </g>
 
   <!-- wet sand with reflections -->
   <rect x="0" y="745" width="1600" height="90" fill="#E5CFA4"/>

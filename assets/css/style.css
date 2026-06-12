@@ -5,7 +5,8 @@
 
 /* ---------- 1. Tokens ---------- */
 :root {
-  /* hero photo: swap for url("../img/hero-beach.jpg") when the real photo lands */
+  /* the illustrated beach IS the hero art (no photo swap planned); only the
+     Port Macquarie story tile gets a real photo, swapped in index.html */
   --hero-image: url("../img/hero-beach.svg");
 
   /* palette */
@@ -496,6 +497,64 @@ body.nav-locked { overflow: hidden; }
   to   { transform: rotate(22deg); }
 }
 
+/* tap/click a gull and it tumbles into the sea, then climbs back out;
+   padding+negative margin grow the touch target without moving the art */
+.hero__birds svg {
+  pointer-events: auto;
+  cursor: pointer;
+  padding: 12px;
+  margin: -12px;
+}
+.hero__birds svg.is-falling {
+  animation: bird-fall 0.65s cubic-bezier(0.5, 0.05, 0.8, 0.5) forwards;
+}
+.hero__birds svg.is-rising {
+  animation: bird-rise 0.7s var(--ease-spring) forwards;
+}
+@keyframes bird-fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(var(--fall-dist, 320px)) rotate(140deg); opacity: 0; }
+}
+@keyframes bird-rise {
+  0%   { transform: translateY(var(--fall-dist, 320px)) rotate(-28deg); opacity: 0; }
+  35%  { opacity: 1; }
+  100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+}
+
+.bird-splash {
+  position: absolute;
+  width: 10px; height: 10px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.bird-splash::before {
+  content: "";
+  display: block;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  animation: splash-ring 0.55s ease-out forwards;
+}
+.bird-splash::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: -2px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: -14px -7px 0 -1px #fff, 13px -10px 0 -1px #fff, -3px -16px 0 0 #fff;
+  animation: splash-drops 0.6s ease-out forwards;
+}
+@keyframes splash-ring {
+  to { transform: scale(3.4); opacity: 0; }
+}
+@keyframes splash-drops {
+  from { transform: translate(-50%, 0) scale(0.4); opacity: 0.95; }
+  60%  { opacity: 1; }
+  to   { transform: translate(-50%, -26px) scale(1); opacity: 0; }
+}
+
 /* bubbles in the water: the field wakes on first scroll, then each bubble
    loops on its own duration, delay and travel height */
 .hero__bubbles {
@@ -717,6 +776,54 @@ body.nav-locked { overflow: hidden; }
 
 @keyframes marquee-x {
   to { transform: translateX(calc(-50% - var(--gap) / 2)); }
+}
+
+/* ---------- 8b. Under-water fish ---------- */
+/* Sections below the hero foam line sit "under the water": JS fills each
+   [data-fish] section with drifting fish that swim behind its content. */
+[data-fish] { position: relative; }
+[data-fish] > .container { position: relative; z-index: 1; }
+
+.fish-layer {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.fish {
+  position: absolute;
+  left: 0;
+  width: var(--fs, 48px);
+  animation: fish-cross linear infinite;
+  will-change: transform;
+}
+.fish svg {
+  width: 100%;
+  height: auto;
+  animation: fish-bob var(--bob, 4s) ease-in-out infinite alternate;
+}
+.fish--flip svg { scale: -1 1; }
+
+.fish__tail {
+  transform-box: fill-box;
+  transform-origin: 0% 50%;
+  animation: tail-wag 0.7s ease-in-out infinite alternate;
+}
+.fish:nth-child(even) .fish__tail { animation-duration: 1s; animation-delay: -0.35s; }
+
+@keyframes fish-cross {
+  from { transform: translateX(-14vw); }
+  to   { transform: translateX(106vw); }
+}
+@keyframes fish-bob {
+  from { transform: translateY(-7px) rotate(-3deg); }
+  to   { transform: translateY(7px) rotate(3deg); }
+}
+@keyframes tail-wag {
+  from { transform: rotate(13deg); }
+  to   { transform: rotate(-13deg); }
 }
 
 /* ---------- 9. Clay cards & features ---------- */
@@ -1252,5 +1359,5 @@ a.clay-card { text-decoration: none; color: inherit; display: block; }
   .marquee__track { animation: none; }
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   .phone--float, .float-chip, .phone::after { animation: none; }
-  .hero__birds, .hero__bubbles { display: none; }
+  .hero__birds, .hero__bubbles, .fish-layer, .bird-splash { display: none; }
 }

@@ -80,6 +80,64 @@
     if (scrim) scrim.after(bubbleWrap); else hero.appendChild(bubbleWrap);
   }
 
+  /* ---------- Interactive gulls: tap one, it splashes down, then recovers ---------- */
+  var birdLayer = hero ? hero.querySelector(".hero__birds") : null;
+  if (birdLayer && !reduceMotion) {
+    var WATERLINE = 0.66; // sea level as a fraction of hero height
+    var FALL_MS = 650, UNDER_MS = 2000, RISE_MS = 700;
+
+    Array.prototype.forEach.call(birdLayer.querySelectorAll("svg"), function (bird) {
+      bird.addEventListener("pointerdown", function () {
+        if (bird.dataset.state) return; // already in the drink
+        var cs = getComputedStyle(bird);
+        if (!bird.dataset.origDelay) {
+          // stash the stylesheet timings before inline overrides pollute them
+          bird.dataset.origDelay = cs.animationDelay;
+          bird.dataset.origDur = cs.animationDuration;
+        }
+        var heroRect = hero.getBoundingClientRect();
+        var rect = bird.getBoundingClientRect();
+        var leftPx = parseFloat(cs.left) || 0;
+
+        bird.dataset.state = "falling";
+        bird.style.left = leftPx + "px"; // freeze the crossing mid-air
+        bird.style.animationDelay = "0s"; // the dive starts from frame 0
+        var fallDist = Math.max(heroRect.height * WATERLINE - (rect.top - heroRect.top), 60);
+        bird.style.setProperty("--fall-dist", fallDist.toFixed(0) + "px");
+        bird.classList.add("is-falling");
+
+        setTimeout(function () { // splash on impact
+          var splash = document.createElement("div");
+          splash.className = "bird-splash";
+          splash.setAttribute("aria-hidden", "true");
+          splash.style.left = (leftPx + rect.width / 2) + "px";
+          splash.style.top = (heroRect.height * WATERLINE) + "px";
+          birdLayer.appendChild(splash);
+          setTimeout(function () { splash.remove(); }, 700);
+        }, FALL_MS - 80);
+
+        setTimeout(function () { // two seconds under, then climb back out
+          bird.dataset.state = "rising";
+          bird.classList.remove("is-falling");
+          bird.classList.add("is-rising");
+          setTimeout(function () {
+            // re-phase the crossing so it resumes from where it fell
+            // (bird-cross runs left: -8% -> 105%, i.e. 113 points of travel)
+            var progress = ((leftPx / heroRect.width) * 100 + 8) / 113;
+            progress = Math.min(Math.max(progress, 0), 0.99);
+            var crossDur = parseFloat(bird.dataset.origDur) || 36;
+            var delays = bird.dataset.origDelay.split(",");
+            delays[0] = (-progress * crossDur).toFixed(2) + "s";
+            bird.style.animationDelay = delays.join(",");
+            bird.classList.remove("is-rising");
+            bird.style.left = "";
+            delete bird.dataset.state;
+          }, RISE_MS);
+        }, FALL_MS + UNDER_MS);
+      });
+    });
+  }
+
   function applyParallax() {
     ticking = false;
     if (!hero) return;
@@ -180,6 +238,48 @@
       });
     });
   });
+
+  /* ---------- Under-water fish: drift behind content in [data-fish] sections ---------- */
+  var FISH_COLORS = ["#13A89E", "#0E7FA8", "#FF6F5E", "#F5A623", "#3E647C"];
+
+  function fishSvg() {
+    return '<svg viewBox="0 0 64 34" aria-hidden="true">' +
+      '<path class="fish__tail" d="M45 17 L61 7 Q56 17 61 27 Z" fill="currentColor"/>' +
+      '<ellipse cx="26" cy="17" rx="20" ry="11" fill="currentColor"/>' +
+      '<path d="M19 8 Q26 2 32 7.5 L26 11 Z" fill="currentColor"/>' +
+      '<circle cx="13" cy="13.5" r="2.3" fill="#FFFBF1" opacity="0.9"/>' +
+      "</svg>";
+  }
+
+  if (!reduceMotion) {
+    document.querySelectorAll("[data-fish]").forEach(function (section) {
+      var count = parseInt(section.getAttribute("data-fish"), 10) || 5;
+      var pale = section.hasAttribute("data-fish-dark"); // ink band: cream fish
+      var layer = document.createElement("div");
+      layer.className = "fish-layer";
+      layer.setAttribute("aria-hidden", "true");
+      for (var i = 0; i < count; i++) {
+        var f = document.createElement("span");
+        f.className = "fish";
+        var dur = 26 + Math.random() * 30; // 26 - 56s per crossing
+        f.style.setProperty("--fs", (26 + Math.random() * 80).toFixed(0) + "px");
+        f.style.setProperty("--bob", (3 + Math.random() * 3).toFixed(1) + "s");
+        f.style.top = (5 + Math.random() * 85).toFixed(1) + "%";
+        f.style.animationDuration = dur.toFixed(1) + "s";
+        f.style.animationDelay = (-Math.random() * dur).toFixed(1) + "s"; // mid-crossing
+        f.style.opacity = (pale ? 0.1 + Math.random() * 0.08 : 0.12 + Math.random() * 0.14).toFixed(2);
+        f.style.color = pale ? "#FFF9EE" : FISH_COLORS[(Math.random() * FISH_COLORS.length) | 0];
+        if (Math.random() < 0.5) {
+          f.classList.add("fish--flip"); // face right, swim left to right
+        } else {
+          f.style.animationDirection = "reverse"; // face left, swim right to left
+        }
+        f.innerHTML = fishSvg();
+        layer.appendChild(f);
+      }
+      section.prepend(layer);
+    });
+  }
 
   /* ---------- Footer year ---------- */
   document.querySelectorAll("[data-year]").forEach(function (el) {
