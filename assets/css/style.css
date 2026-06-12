@@ -5,8 +5,8 @@
 
 /* ---------- 1. Tokens ---------- */
 :root {
-  /* the illustrated beach IS the hero art (no photo swap planned); only the
-     Port Macquarie story tile gets a real photo, swapped in index.html */
+  /* the illustrated beach IS the hero art (no photo swap planned); the
+     Port Macquarie story tile uses the real photo at img/port-macquarie.jpg */
   --hero-image: url("../img/hero-beach.svg");
 
   /* palette */
@@ -447,6 +447,9 @@ body.nav-locked { overflow: hidden; }
 .hero__birds svg:nth-child(1) { top: 16%; animation-duration: 36s, 4.2s; animation-delay: -8s, 0s; }
 .hero__birds svg:nth-child(2) { top: 24%; width: 32px; animation-duration: 46s, 5.1s; animation-delay: -24s, -1.4s; opacity: 0.85; }
 .hero__birds svg:nth-child(3) { top: 10%; width: 24px; animation-duration: 58s, 6s; animation-delay: -40s, -2.6s; opacity: 0.7; }
+.hero__birds svg:nth-child(4) { top: 20%; width: 36px; animation-duration: 41s, 4.8s; animation-delay: -16s, -0.8s; opacity: 0.9; }
+.hero__birds svg:nth-child(5) { top: 6%;  width: 26px; animation-duration: 52s, 5.6s; animation-delay: -33s, -2s; opacity: 0.75; }
+.hero__birds svg:nth-child(6) { top: 30%; width: 28px; animation-duration: 44s, 5.3s; animation-delay: -5s, -3.1s; opacity: 0.8; }
 
 @keyframes bird-cross {
   from { left: -8%; }
@@ -466,6 +469,8 @@ body.nav-locked { overflow: hidden; }
 }
 .hero__birds .bird-flap--a { top: 26%; animation-duration: 34s; animation-delay: -6s; }
 .hero__birds .bird-flap--b { top: 13%; animation-duration: 47s; animation-delay: -28s; }
+.hero__birds .bird-flap--c { top: 33%; width: 64px; animation-duration: 40s; animation-delay: -19s; }
+.hero__birds .bird-flap--d { top: 8%;  width: 96px; animation-duration: 56s; animation-delay: -44s; }
 
 .bird-flap__inner {
   animation: bird-approach linear infinite, bird-bob ease-in-out infinite alternate;
@@ -475,6 +480,8 @@ body.nav-locked { overflow: hidden; }
 /* approach duration must match the cross duration so each pass restarts small at the left */
 .bird-flap--a .bird-flap__inner { animation-duration: 34s, 5s;   animation-delay: -6s, -2s; }
 .bird-flap--b .bird-flap__inner { animation-duration: 47s, 5.6s; animation-delay: -28s, -3.2s; }
+.bird-flap--c .bird-flap__inner { animation-duration: 40s, 5.3s; animation-delay: -19s, -1.1s; }
+.bird-flap--d .bird-flap__inner { animation-duration: 56s, 6.1s; animation-delay: -44s, -2.7s; }
 @keyframes bird-approach {
   from { scale: 0.38; }
   to   { scale: 1.45; }
@@ -487,6 +494,8 @@ body.nav-locked { overflow: hidden; }
 .bird-flap .wing--l { transform-origin: 92% 80%; animation-name: flap-l; }
 .bird-flap .wing--r { transform-origin: 8% 80%; animation-name: flap-r; }
 .bird-flap--b .wing { animation-duration: 1.05s; animation-delay: -0.4s; }
+.bird-flap--c .wing { animation-duration: 0.95s; animation-delay: -0.2s; }
+.bird-flap--d .wing { animation-duration: 1.12s; animation-delay: -0.55s; }
 
 @keyframes flap-l {
   from { transform: rotate(24deg); }
@@ -553,6 +562,88 @@ body.nav-locked { overflow: hidden; }
   from { transform: translate(-50%, 0) scale(0.4); opacity: 0.95; }
   60%  { opacity: 1; }
   to   { transform: translate(-50%, -26px) scale(1); opacity: 0; }
+}
+
+/* breaching whale: one 16s cycle — burst out, hang, crash down, long rest.
+   The stage sits in the air; +150px in the keyframes is the waterline. */
+.hero__whale {
+  position: absolute;
+  top: 55%;
+  left: 64%;
+  width: clamp(110px, 15vw, 185px);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero__whale .whale {
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transform: translate(0, 150px) rotate(22deg);
+  filter: drop-shadow(0 6px 14px rgba(13, 38, 54, 0.3));
+  animation: whale-breach 16s linear 2.5s infinite;
+  will-change: transform, opacity;
+}
+@keyframes whale-breach {
+  0%, 1.5% { transform: translate(0, 150px) rotate(22deg); opacity: 0; animation-timing-function: cubic-bezier(0.18, 0.7, 0.35, 1); }
+  2.5%     { opacity: 1; }
+  8.5%     { transform: translate(-26px, -150px) rotate(-10deg); animation-timing-function: cubic-bezier(0.55, 0, 0.8, 0.35); }
+  14%      { transform: translate(-56px, 142px) rotate(-46deg); opacity: 1; }
+  15.5%, 100% { transform: translate(-60px, 165px) rotate(-48deg); opacity: 0; }
+}
+
+/* the tail works through the whole leap */
+.whale__flukes {
+  transform-box: fill-box;
+  transform-origin: 10% 30%;
+  animation: fluke-flex 0.9s ease-in-out infinite alternate;
+}
+@keyframes fluke-flex {
+  from { transform: rotate(10deg); }
+  to   { transform: rotate(-11deg); }
+}
+
+.whale-splash {
+  position: absolute;
+  left: -34%;
+  top: 175%;
+  width: 90%;
+  transform-origin: 50% 100%;
+  opacity: 0;
+  animation: whale-splash-cycle 16s linear 2.5s infinite;
+}
+.whale-splash::before {
+  content: "";
+  display: block;
+  width: 100%;
+  aspect-ratio: 2.6 / 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.4) 58%, transparent 74%);
+}
+.whale-splash::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    -26px -14px 0 -2px #fff, 22px -18px 0 -2px #fff,
+    -8px -30px 0 -1px #fff, 10px -26px 0 -3px #fff,
+    38px -6px 0 -3px #fff, -40px -4px 0 -3px #fff;
+  animation: whale-drops 16s linear 2.5s infinite;
+}
+@keyframes whale-splash-cycle {
+  0%, 13%   { opacity: 0; transform: scale(0.25); }
+  14.5%     { opacity: 1; transform: scale(0.9); }
+  18%       { opacity: 0.9; transform: scale(1.08); }
+  24%, 100% { opacity: 0; transform: scale(1.2); }
+}
+@keyframes whale-drops {
+  0%, 13%   { transform: translate(-50%, 8px) scale(0.4); opacity: 0; }
+  14.5%     { opacity: 1; }
+  22%       { transform: translate(-50%, -34px) scale(1); opacity: 0.95; }
+  26%, 100% { transform: translate(-50%, -46px) scale(1); opacity: 0; }
 }
 
 /* bubbles in the water: the field wakes on first scroll, then each bubble
@@ -1359,5 +1450,5 @@ a.clay-card { text-decoration: none; color: inherit; display: block; }
   .marquee__track { animation: none; }
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   .phone--float, .float-chip, .phone::after { animation: none; }
-  .hero__birds, .hero__bubbles, .fish-layer, .bird-splash { display: none; }
+  .hero__birds, .hero__bubbles, .fish-layer, .bird-splash, .hero__whale { display: none; }
 }

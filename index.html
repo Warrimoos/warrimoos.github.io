@@ -62,6 +62,9 @@
         <svg viewBox="0 0 46 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M2 12 Q12 2 22 12 Q32 2 42 12"/></svg>
         <svg viewBox="0 0 46 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M2 12 Q12 2 22 12 Q32 2 42 12"/></svg>
         <svg viewBox="0 0 46 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M2 12 Q12 2 22 12 Q32 2 42 12"/></svg>
+        <svg viewBox="0 0 46 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M2 12 Q12 2 22 12 Q32 2 42 12"/></svg>
+        <svg viewBox="0 0 46 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M2 12 Q12 2 22 12 Q32 2 42 12"/></svg>
+        <svg viewBox="0 0 46 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M2 12 Q12 2 22 12 Q32 2 42 12"/></svg>
         <!-- closer gulls: wings flap, bird grows as it approaches -->
         <svg class="bird-flap bird-flap--a" viewBox="0 0 64 40">
           <g class="bird-flap__inner">
@@ -85,8 +88,46 @@
             <path class="wing wing--r" d="M36 25 Q47 7 61 11 Q52 21 37 28 Z" fill="#FFFFFF"/>
           </g>
         </svg>
+        <svg class="bird-flap bird-flap--c" viewBox="0 0 64 40">
+          <g class="bird-flap__inner">
+            <path class="wing wing--l" d="M30 25 Q19 7 5 11 Q14 21 29 28 Z" fill="#D9E7EE"/>
+            <ellipse cx="33" cy="27" rx="11" ry="5.5" fill="#FFFFFF"/>
+            <path d="M23 27 l-7 4 3.5-7 Z" fill="#EAF3F7"/>
+            <circle cx="43" cy="23" r="4.2" fill="#FFFFFF"/>
+            <path d="M47 22 l5.5 1.8-5.5 1.8 Z" fill="#F5A623"/>
+            <circle cx="44" cy="22" r="0.9" fill="#16384C"/>
+            <path class="wing wing--r" d="M36 25 Q47 7 61 11 Q52 21 37 28 Z" fill="#FFFFFF"/>
+          </g>
+        </svg>
+        <svg class="bird-flap bird-flap--d" viewBox="0 0 64 40">
+          <g class="bird-flap__inner">
+            <path class="wing wing--l" d="M30 25 Q19 7 5 11 Q14 21 29 28 Z" fill="#D9E7EE"/>
+            <ellipse cx="33" cy="27" rx="11" ry="5.5" fill="#FFFFFF"/>
+            <path d="M23 27 l-7 4 3.5-7 Z" fill="#EAF3F7"/>
+            <circle cx="43" cy="23" r="4.2" fill="#FFFFFF"/>
+            <path d="M47 22 l5.5 1.8-5.5 1.8 Z" fill="#F5A623"/>
+            <circle cx="44" cy="22" r="0.9" fill="#16384C"/>
+            <path class="wing wing--r" d="M36 25 Q47 7 61 11 Q52 21 37 28 Z" fill="#FFFFFF"/>
+          </g>
+        </svg>
       </div>
       <div class="hero__scrim" aria-hidden="true"></div>
+
+      <!-- breaching whale: leaps on a long loop, crashes back with a splash -->
+      <div class="hero__whale" aria-hidden="true">
+        <svg class="whale" viewBox="0 0 170 90">
+          <!-- arched body with a long tail stock bending down toward the flukes -->
+          <path d="M12 42 Q20 22 44 14 Q72 6 94 14 Q112 20 122 32 Q132 44 142 58 Q130 54 122 48 Q110 60 88 62 Q54 66 30 58 Q14 52 12 42 Z" fill="#1D4660"/>
+          <g class="whale__flukes">
+            <path d="M136 52 Q152 44 166 50 Q156 60 146 62 Q152 72 150 84 Q138 72 132 60 Q133 55 136 52 Z" fill="#1D4660"/>
+          </g>
+          <!-- long humpback pectoral fin -->
+          <path d="M50 50 Q64 68 86 74 Q66 78 52 68 Q44 58 50 50 Z" fill="#16384C"/>
+          <path d="M14 44 Q28 58 54 61 Q38 64 26 58 Q16 52 14 44 Z" fill="#FFF9EE" opacity="0.4"/>
+          <circle cx="25" cy="37" r="2.6" fill="#FFF9EE"/>
+        </svg>
+        <span class="whale-splash"></span>
+      </div>
 
       <div class="hero__content container">
         <p class="hero__kicker">
@@ -271,8 +312,7 @@
       <div class="container">
         <div class="story">
           <div class="story__art" data-reveal="left">
-            <!-- TODO: swap this tile for a real Port Macquarie beach photo -->
-            <img src="assets/img/hero-beach.svg" alt="Illustration of a sunny beach with paw prints wandering along the sand" loading="lazy">
+            <img src="assets/img/port-macquarie.jpg" alt="Shelly Beach at Port Macquarie: golden sand, rocky outcrops, a green headland and two dogs playing on the beach" loading="lazy" width="1400" height="1054">
           </div>
           <div data-reveal="right" style="--d:.1s">
             <p class="eyebrow">Our story</p>

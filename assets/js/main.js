@@ -240,16 +240,43 @@
   });
 
   /* ---------- Under-water fish: drift behind content in [data-fish] sections ---------- */
-  var FISH_COLORS = ["#13A89E", "#0E7FA8", "#FF6F5E", "#F5A623", "#3E647C"];
-
-  function fishSvg() {
-    return '<svg viewBox="0 0 64 34" aria-hidden="true">' +
-      '<path class="fish__tail" d="M45 17 L61 7 Q56 17 61 27 Z" fill="currentColor"/>' +
-      '<ellipse cx="26" cy="17" rx="20" ry="11" fill="currentColor"/>' +
-      '<path d="M19 8 Q26 2 32 7.5 L26 11 Z" fill="currentColor"/>' +
-      '<circle cx="13" cy="13.5" r="2.3" fill="#FFFBF1" opacity="0.9"/>' +
-      "</svg>";
-  }
+  /* four reef species: clownfish, tang, banded lagoonfish, sunny angel */
+  var FISH_SPECIES = [
+    '<svg viewBox="0 0 64 34" aria-hidden="true">' +
+      '<path class="fish__tail" d="M45 17 L61 7 Q56 17 61 27 Z" fill="#E85643"/>' +
+      '<ellipse cx="26" cy="17" rx="20" ry="11" fill="#FF8A5C"/>' +
+      '<path d="M19 8 Q26 2 32 7.5 L26 11 Z" fill="#E85643"/>' +
+      '<path d="M16 7.7 Q21 17 16 26.3 Q11 17 16 7.7 Z" fill="#FFF9EE"/>' +
+      '<path d="M30 6.4 Q35 17 30 27.6 Q25 17 30 6.4 Z" fill="#FFF9EE"/>' +
+      '<circle cx="11" cy="13.5" r="2.5" fill="#16384C"/>' +
+      '<circle cx="11.9" cy="12.6" r="0.8" fill="#FFFFFF"/>' +
+      "</svg>",
+    '<svg viewBox="0 0 64 34" aria-hidden="true">' +
+      '<path class="fish__tail" d="M45 17 L61 7 Q56 17 61 27 Z" fill="#FFC247"/>' +
+      '<ellipse cx="26" cy="17" rx="20" ry="11" fill="#0E7FA8"/>' +
+      '<path d="M10 13.5 Q26 3.5 42 13.5 Q26 9 10 13.5 Z" fill="#16384C" opacity="0.6"/>' +
+      '<path d="M19 8 Q26 2 32 7.5 L26 11 Z" fill="#0C7B74"/>' +
+      '<circle cx="11" cy="13.5" r="2.4" fill="#FFFBF1"/>' +
+      '<circle cx="11.4" cy="13.8" r="1.2" fill="#16384C"/>' +
+      "</svg>",
+    '<svg viewBox="0 0 64 34" aria-hidden="true">' +
+      '<path class="fish__tail" d="M45 17 L61 7 Q56 17 61 27 Z" fill="#FF6F5E"/>' +
+      '<ellipse cx="26" cy="17" rx="20" ry="11" fill="#13A89E"/>' +
+      '<path d="M14 8.4 Q17 17 14 25.6 Q11 17 14 8.4 Z" fill="#FFF9EE" opacity="0.85"/>' +
+      '<path d="M24 6.2 Q27 17 24 27.8 Q21 17 24 6.2 Z" fill="#FFF9EE" opacity="0.85"/>' +
+      '<path d="M34 7.2 Q37 17 34 26.8 Q31 17 34 7.2 Z" fill="#FFF9EE" opacity="0.85"/>' +
+      '<path d="M19 8 Q26 2 32 7.5 L26 11 Z" fill="#0C7B74"/>' +
+      '<circle cx="10.5" cy="13.5" r="2.3" fill="#16384C"/>' +
+      "</svg>",
+    '<svg viewBox="0 0 64 34" aria-hidden="true">' +
+      '<path class="fish__tail" d="M45 17 L61 7 Q56 17 61 27 Z" fill="#F5A623"/>' +
+      '<ellipse cx="26" cy="17" rx="20" ry="11" fill="#FFC247"/>' +
+      '<path d="M19 8 Q26 2 32 7.5 L26 11 Z" fill="#FF6F5E"/>' +
+      '<path d="M22 26.5 Q29 31.5 36 25.5 L28 23.5 Z" fill="#FF6F5E"/>' +
+      '<path d="M26 12 Q32 17 26 22 Q22 17 26 12 Z" fill="#F5A623" opacity="0.8"/>' +
+      '<circle cx="11" cy="13.5" r="2.4" fill="#16384C"/>' +
+      "</svg>"
+  ];
 
   if (!reduceMotion) {
     document.querySelectorAll("[data-fish]").forEach(function (section) {
@@ -267,14 +294,13 @@
         f.style.top = (5 + Math.random() * 85).toFixed(1) + "%";
         f.style.animationDuration = dur.toFixed(1) + "s";
         f.style.animationDelay = (-Math.random() * dur).toFixed(1) + "s"; // mid-crossing
-        f.style.opacity = (pale ? 0.1 + Math.random() * 0.08 : 0.12 + Math.random() * 0.14).toFixed(2);
-        f.style.color = pale ? "#FFF9EE" : FISH_COLORS[(Math.random() * FISH_COLORS.length) | 0];
+        f.style.opacity = (pale ? 0.26 + Math.random() * 0.16 : 0.32 + Math.random() * 0.2).toFixed(2);
         if (Math.random() < 0.5) {
           f.classList.add("fish--flip"); // face right, swim left to right
         } else {
           f.style.animationDirection = "reverse"; // face left, swim right to left
         }
-        f.innerHTML = fishSvg();
+        f.innerHTML = FISH_SPECIES[(Math.random() * FISH_SPECIES.length) | 0];
         layer.appendChild(f);
       }
       section.prepend(layer);
