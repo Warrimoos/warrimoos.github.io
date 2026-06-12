@@ -1,0 +1,4 @@
+.claude/
+*.local
+.env
+.env.*

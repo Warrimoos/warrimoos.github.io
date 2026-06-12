@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" font-family="'Segoe UI', system-ui, sans-serif">
+  <rect width="390" height="844" fill="#F4FAF9"/>
+  <text x="28" y="36" font-size="15" font-weight="600" fill="#16384C">9:41</text>
+  <rect x="330" y="24" width="24" height="12" rx="3" fill="none" stroke="#16384C" stroke-width="1.5"/>
+  <rect x="333" y="27" width="14" height="6" rx="1.5" fill="#16384C"/>
+  <text x="28" y="92" font-size="32" font-weight="700" fill="#16384C">Vet visits</text>
+  <text x="28" y="118" font-size="15" fill="#5B7A8C">Bella &#183; Greenway Vet Clinic</text>
+  <!-- timeline spine -->
+  <rect x="46" y="160" width="3" height="420" rx="1.5" fill="#DCE9E6"/>
+  <!-- visit 1 -->
+  <circle cx="47.5" cy="190" r="9" fill="#13A89E" stroke="#FFFFFF" stroke-width="3"/>
+  <rect x="76" y="158" width="294" height="118" rx="20" fill="#FFFFFF" stroke="#E3EEEC"/>
+  <text x="96" y="190" font-size="13" fill="#5B7A8C">Next &#183; Fri 12 June, 2:30 pm</text>
+  <text x="96" y="216" font-size="16" font-weight="700" fill="#16384C">Annual check-up &#183; Dr Chen</text>
+  <rect x="96" y="232" width="110" height="28" rx="14" fill="#E0F4F1"/>
+  <text x="151" y="251" font-size="12" font-weight="600" fill="#0C7B74" text-anchor="middle">Reminder set</text>
+  <rect x="214" y="232" width="92" height="28" rx="14" fill="#F0F7F6"/>
+  <text x="260" y="251" font-size="12" font-weight="600" fill="#16384C" text-anchor="middle">Add notes</text>
+  <!-- visit 2 -->
+  <circle cx="47.5" cy="320" r="9" fill="#C8DAD6" stroke="#FFFFFF" stroke-width="3"/>
+  <rect x="76" y="290" width="294" height="104" rx="20" fill="#FFFFFF" stroke="#E3EEEC"/>
+  <text x="96" y="322" font-size="13" fill="#5B7A8C">14 March 2026</text>
+  <text x="96" y="348" font-size="16" font-weight="700" fill="#16384C">Vaccination &#183; C5 booster</text>
+  <text x="96" y="372" font-size="13" fill="#5B7A8C">Weight 12.2 kg &#183; all clear</text>
+  <!-- visit 3 -->
+  <circle cx="47.5" cy="440" r="9" fill="#C8DAD6" stroke="#FFFFFF" stroke-width="3"/>
+  <rect x="76" y="410" width="294" height="104" rx="20" fill="#FFFFFF" stroke="#E3EEEC"/>
+  <text x="96" y="442" font-size="13" fill="#5B7A8C">2 November 2025</text>
+  <text x="96" y="468" font-size="16" font-weight="700" fill="#16384C">Dental clean</text>
+  <text x="96" y="492" font-size="13" fill="#5B7A8C">Insurance claim &#183; GapOnly &#10003;</text>
+  <!-- share report card -->
+  <rect x="20" y="560" width="350" height="130" rx="22" fill="#16384C"/>
+  <text x="40" y="598" font-size="17" font-weight="700" fill="#FFF9EE">Off to the vet?</text>
+  <text x="40" y="622" font-size="13" fill="#9FC2D4">Share a tidy health report: meds, doses,</text>
+  <text x="40" y="640" font-size="13" fill="#9FC2D4">weight trend and recent notes.</text>
+  <rect x="40" y="652" width="150" height="36" rx="18" fill="#FF6F5E"/>
+  <text x="115" y="675" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">Share report</text>
+  <!-- tab bar -->
+  <rect x="0" y="764" width="390" height="80" fill="#FFFFFF"/>
+  <rect x="0" y="764" width="390" height="1" fill="#E3EEEC"/>
+  <circle cx="65" cy="796" r="14" fill="#DCE9E6"/>
+  <text x="65" y="828" font-size="11" fill="#8AA3A0" text-anchor="middle">Today</text>
+  <circle cx="152" cy="796" r="14" fill="#DCE9E6"/>
+  <text x="152" y="828" font-size="11" fill="#8AA3A0" text-anchor="middle">Meds</text>
+  <circle cx="239" cy="796" r="14" fill="#DCE9E6"/>
+  <text x="239" y="828" font-size="11" fill="#8AA3A0" text-anchor="middle">Health</text>
+  <circle cx="326" cy="796" r="14" fill="#13A89E"/>
+  <text x="326" y="828" font-size="11" fill="#0C7B74" text-anchor="middle" font-weight="600">Vet</text>
+</svg>

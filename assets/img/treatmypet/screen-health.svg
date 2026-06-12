@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" font-family="'Segoe UI', system-ui, sans-serif">
+  <rect width="390" height="844" fill="#F4FAF9"/>
+  <text x="28" y="36" font-size="15" font-weight="600" fill="#16384C">9:41</text>
+  <rect x="330" y="24" width="24" height="12" rx="3" fill="none" stroke="#16384C" stroke-width="1.5"/>
+  <rect x="333" y="27" width="14" height="6" rx="1.5" fill="#16384C"/>
+  <text x="28" y="92" font-size="32" font-weight="700" fill="#16384C">Health</text>
+  <text x="28" y="118" font-size="15" fill="#5B7A8C">Bella &#183; last 30 days</text>
+  <!-- segment chips -->
+  <rect x="20" y="138" width="88" height="36" rx="18" fill="#16384C"/>
+  <text x="64" y="161" font-size="14" font-weight="600" fill="#FFF9EE" text-anchor="middle">Weight</text>
+  <rect x="116" y="138" width="88" height="36" rx="18" fill="#FFFFFF" stroke="#E3EEEC"/>
+  <text x="160" y="161" font-size="14" fill="#5B7A8C" text-anchor="middle">Glucose</text>
+  <rect x="212" y="138" width="88" height="36" rx="18" fill="#FFFFFF" stroke="#E3EEEC"/>
+  <text x="256" y="161" font-size="14" fill="#5B7A8C" text-anchor="middle">Mood</text>
+  <!-- chart card -->
+  <rect x="20" y="194" width="350" height="250" rx="22" fill="#FFFFFF" stroke="#E3EEEC"/>
+  <text x="40" y="230" font-size="15" font-weight="700" fill="#16384C">Weight trend</text>
+  <text x="350" y="230" font-size="13" fill="#0C7B74" text-anchor="end" font-weight="600">&#9650; +0.2 kg</text>
+  <g stroke="#EAF2F0" stroke-width="1">
+    <path d="M40 270 H350"/><path d="M40 310 H350"/><path d="M40 350 H350"/><path d="M40 390 H350"/>
+  </g>
+  <polyline points="48,372 92,360 136,366 180,340 224,348 268,322 312,328 348,308" fill="none" stroke="#13A89E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#FFFFFF" stroke="#13A89E" stroke-width="3">
+    <circle cx="48" cy="372" r="5"/><circle cx="136" cy="366" r="5"/><circle cx="224" cy="348" r="5"/><circle cx="312" cy="328" r="5"/>
+  </g>
+  <circle cx="348" cy="308" r="6.5" fill="#FF6F5E" stroke="#FFFFFF" stroke-width="3"/>
+  <text x="40" y="424" font-size="12" fill="#8AA3A0">12 May</text>
+  <text x="350" y="424" font-size="12" fill="#8AA3A0" text-anchor="end">10 June</text>
+  <!-- stat cards -->
+  <rect x="20" y="462" width="166" height="92" rx="20" fill="#FFFFFF" stroke="#E3EEEC"/>
+  <text x="40" y="494" font-size="13" fill="#5B7A8C">Current weight</text>
+  <text x="40" y="528" font-size="26" font-weight="700" fill="#16384C">12.4 kg</text>
+  <rect x="204" y="462" width="166" height="92" rx="20" fill="#FFFFFF" stroke="#E3EEEC"/>
+  <text x="224" y="494" font-size="13" fill="#5B7A8C">Wellness score</text>
+  <text x="224" y="528" font-size="26" font-weight="700" fill="#0C7B74">Great</text>
+  <!-- quality of life row -->
+  <rect x="20" y="570" width="350" height="76" rx="20" fill="#E0F4F1"/>
+  <circle cx="56" cy="608" r="18" fill="#13A89E"/>
+  <path d="M49 608 q7 -12 14 0 q-7 10 -14 0" fill="#FFFFFF"/>
+  <text x="88" y="602" font-size="15" font-weight="700" fill="#0C5650">Quality of life check-in</text>
+  <text x="88" y="624" font-size="13" fill="#2E7E76">Due Sunday &#183; 5 quick questions</text>
+  <!-- tab bar -->
+  <rect x="0" y="764" width="390" height="80" fill="#FFFFFF"/>
+  <rect x="0" y="764" width="390" height="1" fill="#E3EEEC"/>
+  <circle cx="65" cy="796" r="14" fill="#DCE9E6"/>
+  <text x="65" y="828" font-size="11" fill="#8AA3A0" text-anchor="middle">Today</text>
+  <circle cx="152" cy="796" r="14" fill="#DCE9E6"/>
+  <text x="152" y="828" font-size="11" fill="#8AA3A0" text-anchor="middle">Meds</text>
+  <circle cx="239" cy="796" r="14" fill="#13A89E"/>
+  <text x="239" y="828" font-size="11" fill="#0C7B74" text-anchor="middle" font-weight="600">Health</text>
+  <circle cx="326" cy="796" r="14" fill="#DCE9E6"/>
+  <text x="326" y="828" font-size="11" fill="#8AA3A0" text-anchor="middle">More</text>
+</svg>
