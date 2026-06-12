@@ -419,6 +419,22 @@ body.nav-locked { overflow: hidden; }
     linear-gradient(to top, rgba(13, 38, 54, 0.62) 0%, rgba(13, 38, 54, 0.26) 30%, rgba(13, 38, 54, 0) 58%);
 }
 
+/* On small screens the headline block sits over the palest bands of the
+   artwork (shallow water, foam edge, sand), so the scrim must reach higher
+   and run darker to keep the cream text readable. */
+@media (max-width: 899px) {
+  .hero__scrim {
+    background:
+      linear-gradient(to bottom, rgba(13, 38, 54, 0.35), rgba(13, 38, 54, 0) 20%),
+      linear-gradient(to top,
+        rgba(13, 38, 54, 0.75) 0%,
+        rgba(13, 38, 54, 0.62) 30%,
+        rgba(13, 38, 54, 0.5) 52%,
+        rgba(13, 38, 54, 0.4) 66%,
+        rgba(13, 38, 54, 0) 90%);
+  }
+}
+
 /* gulls drifting across the sky */
 .hero__birds { position: absolute; inset: 0; pointer-events: none; overflow: clip; }
 .hero__birds svg {
@@ -589,6 +605,18 @@ body.nav-locked { overflow: hidden; }
   text-shadow: 0 1px 5px rgba(13, 38, 54, 0.4);
   opacity: 0;
   animation: rise-in 0.9s var(--ease-out) 0.85s forwards;
+}
+
+/* companion to the mobile scrim boost above: heavier shadows + full-strength
+   cream so the type holds up over the bright wave bands */
+@media (max-width: 899px) {
+  .hero__title {
+    text-shadow: 0 1px 3px rgba(13, 38, 54, 0.5), 0 4px 18px rgba(13, 38, 54, 0.45);
+  }
+  .hero__sub {
+    color: var(--cream);
+    text-shadow: 0 1px 3px rgba(13, 38, 54, 0.6), 0 3px 14px rgba(13, 38, 54, 0.45);
+  }
 }
 
 .hero__cta {
