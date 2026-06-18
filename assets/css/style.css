@@ -336,6 +336,7 @@ button { font: inherit; cursor: pointer; }
 .mobile-nav.is-open a:nth-child(3) { transition-delay: 0.2s; }
 .mobile-nav.is-open a:nth-child(4) { transition-delay: 0.26s; }
 .mobile-nav.is-open a:nth-child(5) { transition-delay: 0.32s; }
+.mobile-nav.is-open a:nth-child(6) { transition-delay: 0.38s; }
 .mobile-nav a:hover { color: var(--sun); }
 .mobile-nav .mobile-nav__paw { margin: 1.6rem auto 0; width: 44px; opacity: 0.5; }
 body.nav-locked { overflow: hidden; }
