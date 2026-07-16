@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#3E9181"/>
+  <!-- paw: main pad -->
+  <ellipse cx="32" cy="40" rx="11" ry="9" fill="#ffffff"/>
+  <!-- toe beans -->
+  <ellipse cx="19" cy="29" rx="5" ry="6.5" fill="#ffffff"/>
+  <ellipse cx="28" cy="23" rx="5" ry="6.5" fill="#ffffff"/>
+  <ellipse cx="38" cy="23" rx="5" ry="6.5" fill="#ffffff"/>
+  <ellipse cx="46" cy="29" rx="5" ry="6.5" fill="#ffffff"/>
+  <!-- terracotta heart on the pad -->
+  <path d="M32 43.5c-3.2-2.3-5-3.9-5-6a2.8 2.8 0 0 1 5-1.7 2.8 2.8 0 0 1 5 1.7c0 2.1-1.8 3.7-5 6z" fill="#E8795A"/>
+</svg>
