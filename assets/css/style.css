@@ -648,6 +648,39 @@ body.nav-locked { overflow: hidden; }
   26%, 100% { transform: translate(-50%, -46px) scale(1); opacity: 0; }
 }
 
+/* tap the whale mid-breach and it goes again, higher, with a full backflip */
+.hero__whale .whale {
+  pointer-events: auto;
+  cursor: pointer;
+}
+.hero__whale .whale.is-boosted {
+  animation: whale-breach-high 5s linear forwards;
+}
+@keyframes whale-breach-high {
+  0%   { transform: translate(-26px, -150px) rotate(-10deg); opacity: 1; animation-timing-function: cubic-bezier(0.16, 0.75, 0.3, 1); }
+  34%  { transform: translate(-46px, -290px) rotate(-190deg); animation-timing-function: cubic-bezier(0.55, 0, 0.8, 0.4); }
+  72%  { transform: translate(-70px, 150px) rotate(-395deg); opacity: 1; }
+  76%, 100% { transform: translate(-72px, 170px) rotate(-400deg); opacity: 0; }
+}
+.whale-splash.is-boosted {
+  animation: whale-splash-high 5s linear forwards;
+}
+@keyframes whale-splash-high {
+  0%, 70%   { opacity: 0; transform: scale(0.3); }
+  74%       { opacity: 1; transform: scale(1.25); }
+  84%       { opacity: 0.95; transform: scale(1.5); }
+  96%, 100% { opacity: 0; transform: scale(1.65); }
+}
+.whale-splash.is-boosted::after {
+  animation: whale-drops-high 5s linear forwards;
+}
+@keyframes whale-drops-high {
+  0%, 70%   { transform: translate(-50%, 10px) scale(0.4); opacity: 0; }
+  74%       { opacity: 1; }
+  88%       { transform: translate(-50%, -54px) scale(1.15); opacity: 0.95; }
+  96%, 100% { transform: translate(-50%, -66px) scale(1.15); opacity: 0; }
+}
+
 /* bubbles in the water: the field wakes on first scroll, then each bubble
    loops on its own duration, delay and travel height */
 .hero__bubbles {
@@ -898,6 +931,20 @@ body.nav-locked { overflow: hidden; }
   animation: fish-bob var(--bob, 4s) ease-in-out infinite alternate;
 }
 .fish--flip svg { scale: -1 1; }
+
+/* startle offsets and the scroll current live on their own layers so they
+   compose with the crossing and the bob instead of fighting them */
+.fish__dart {
+  display: block;
+  transform: translate(var(--dx, 0px), var(--dy, 0px));
+  transition: transform 0.55s var(--ease-spring);
+}
+.fish.is-startled .fish__tail { animation-duration: 0.22s; }
+
+.fish-layer {
+  translate: 0 var(--drift, 0px);
+  transition: translate 0.45s var(--ease-out);
+}
 
 .fish__tail {
   transform-box: fill-box;

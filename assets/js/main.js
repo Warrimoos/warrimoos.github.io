@@ -300,10 +300,105 @@
         } else {
           f.style.animationDirection = "reverse"; // face left, swim right to left
         }
-        f.innerHTML = FISH_SPECIES[(Math.random() * FISH_SPECIES.length) | 0];
+        // dart wrapper: startle/current offsets live here so they never
+        // fight the crossing (on .fish) or the bob (on the svg)
+        f.innerHTML = '<span class="fish__dart">' + FISH_SPECIES[(Math.random() * FISH_SPECIES.length) | 0] + "</span>";
         layer.appendChild(f);
       }
       section.prepend(layer);
+    });
+  }
+
+  /* ---------- Fish react to the pointer and to scroll ---------- */
+  var fishLayers = document.querySelectorAll(".fish-layer");
+  var fishEls = document.querySelectorAll(".fish");
+
+  function startleFish(fish, px, py, power) {
+    var r = fish.getBoundingClientRect();
+    if (!r.width) return; // hidden by the mobile shoal cap
+    var cx = r.left + r.width / 2;
+    var cy = r.top + r.height / 2;
+    var dx = cx - px, dy = cy - py;
+    var dist = Math.hypot(dx, dy);
+    var radius = power > 1 ? 150 : 95;
+    if (dist > radius) return;
+    var proximity = (radius - dist) / radius;
+    var mag = (30 + 70 * proximity) * power;
+    var nx = dist ? dx / dist : Math.random() - 0.5;
+    var ny = dist ? dy / dist : -0.6;
+    var dart = fish.firstElementChild;
+    if (!dart) return;
+    dart.style.setProperty("--dx", (nx * mag).toFixed(0) + "px");
+    dart.style.setProperty("--dy", (ny * mag * 0.7).toFixed(0) + "px");
+    fish.classList.add("is-startled");
+    clearTimeout(fish._calmT);
+    fish._calmT = setTimeout(function () {
+      dart.style.setProperty("--dx", "0px");
+      dart.style.setProperty("--dy", "0px");
+      fish.classList.remove("is-startled");
+    }, 620);
+  }
+
+  if (fishEls.length && !reduceMotion) {
+    var pmPending = false;
+    document.addEventListener("pointermove", function (e) {
+      if (pmPending) return;
+      pmPending = true;
+      var px = e.clientX, py = e.clientY;
+      window.requestAnimationFrame(function () {
+        pmPending = false;
+        for (var i = 0; i < fishEls.length; i++) startleFish(fishEls[i], px, py, 1);
+      });
+    }, { passive: true });
+
+    document.addEventListener("pointerdown", function (e) {
+      for (var i = 0; i < fishEls.length; i++) startleFish(fishEls[i], e.clientX, e.clientY, 1.7);
+    }, { passive: true });
+  }
+
+  /* scroll current: the shoal lags behind fast scrolling, then settles */
+  var lastDriftY = window.scrollY;
+  var driftIdleT;
+  function updateFishDrift() {
+    if (!fishLayers.length || reduceMotion) return;
+    var y = window.scrollY;
+    var v = y - lastDriftY;
+    lastDriftY = y;
+    var drift = Math.max(-30, Math.min(30, v * 0.5));
+    for (var i = 0; i < fishLayers.length; i++) {
+      fishLayers[i].style.setProperty("--drift", drift.toFixed(1) + "px");
+    }
+    clearTimeout(driftIdleT);
+    driftIdleT = setTimeout(function () {
+      for (var j = 0; j < fishLayers.length; j++) {
+        fishLayers[j].style.setProperty("--drift", "0px");
+      }
+    }, 160);
+  }
+  window.addEventListener("scroll", updateFishDrift, { passive: true });
+
+  /* ---------- Clickable whale: tap mid-breach for a bigger jump ---------- */
+  var whaleEl = document.querySelector(".hero__whale .whale");
+  var whaleSplash = document.querySelector(".whale-splash");
+  if (whaleEl && whaleSplash && !reduceMotion) {
+    whaleEl.addEventListener("pointerdown", function () {
+      if (whaleEl.classList.contains("is-boosted")) return;
+      if (parseFloat(getComputedStyle(whaleEl).opacity) < 0.05) return; // under water
+      whaleEl.classList.add("is-boosted");
+      whaleSplash.classList.add("is-boosted");
+      whaleEl.addEventListener("animationend", function onEnd(e) {
+        if (e.animationName !== "whale-breach-high") return;
+        whaleEl.removeEventListener("animationend", onEnd);
+        whaleEl.classList.remove("is-boosted");
+        whaleSplash.classList.remove("is-boosted");
+        // restart the normal loop from the top so whale, splash and
+        // droplets all come back in step
+        whaleEl.style.animation = "none";
+        whaleSplash.style.animation = "none";
+        void whaleEl.offsetWidth;
+        whaleEl.style.animation = "";
+        whaleSplash.style.animation = "";
+      });
     });
   }
 
